@@ -31,6 +31,18 @@ funds_raised_millions ) AS row_num
 FROM processing_layoffs
 ) DELETE FROM Duplicate_CTE WHERE row_num >1;
 
+CREATE TABLE `processing_layoffs2` (
+  `company` text,
+  `location` text,
+  `industry` text,
+  `total_laid_off` int DEFAULT NULL,
+  `percentage_laid_off` text,
+  `date` text,
+  `stage` text,
+  `country` text,
+  `funds_raised_millions` int DEFAULT NULL,
+  `row_num` int
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 SELECT *FROM processing_layoffs2;
 
@@ -43,8 +55,6 @@ FROM processing_layoffs;
 
 SELECT *FROM processing_layoffs2 WHERE row_num>1;
 DELETE FROM processing_layoffs2 WHERE row_num>1;
-
-
 
 -- 2. Standardize The Data thus spelling and ...
 SELECT company, TRIM(company) FROM processing_layoffs2;
